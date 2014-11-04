@@ -5,7 +5,7 @@
 //
 
 
-#import "UIView+FLKAutoLayoutPredicate.h"
+#import "NSView+FLKAutoLayoutPredicate.h"
 
 FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGFloat multiplier, CGFloat constant, UILayoutPriority priority) {
     FLKAutoLayoutPredicate predicate;
@@ -17,14 +17,14 @@ FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGF
 }
 
 
-@implementation UIView (FLKAutoLayoutPredicate)
+@implementation NSView (FLKAutoLayoutPredicate)
 
-- (NSLayoutConstraint*)applyPredicate:(FLKAutoLayoutPredicate)predicate toView:(UIView*)toView attribute:(NSLayoutAttribute)attribute {
+- (NSLayoutConstraint*)applyPredicate:(FLKAutoLayoutPredicate)predicate toView:(NSView*)toView attribute:(NSLayoutAttribute)attribute {
     return [self applyPredicate:predicate toView:toView fromAttribute:attribute toAttribute:attribute];
 }
 
-- (NSLayoutConstraint*)applyPredicate:(FLKAutoLayoutPredicate)predicate toView:(UIView*)view fromAttribute:(NSLayoutAttribute)fromAttribute toAttribute:(NSLayoutAttribute)toAttribute {
-    UIView* commonSuperview = [self commonSuperviewWithView:view];
+- (NSLayoutConstraint*)applyPredicate:(FLKAutoLayoutPredicate)predicate toView:(NSView*)view fromAttribute:(NSLayoutAttribute)fromAttribute toAttribute:(NSLayoutAttribute)toAttribute {
+    NSView* commonSuperview = [self commonSuperviewWithView:view];
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSLayoutConstraint* constraint = [NSLayoutConstraint constraintWithItem:self
                                                                   attribute:fromAttribute
@@ -40,7 +40,7 @@ FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGF
     return constraint;
 }
 
-- (UIView*)commonSuperviewWithView:(UIView*)view {
+- (NSView*)commonSuperviewWithView:(NSView*)view {
     if (!view) {
         return self;
     } else if (self.superview == view) {
@@ -50,20 +50,20 @@ FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGF
     } else if (self.superview == view.superview) {
         return self.superview;
     } else {
-        UIView* commonSuperview = [self traverseViewTreeForCommonSuperViewWithView:view];
+        NSView* commonSuperview = [self traverseViewTreeForCommonSuperViewWithView:view];
         NSAssert(commonSuperview, @"Cannot find common superview of %@ and %@. Finding common superview in view tree not implemented yet", self, view);
         return commonSuperview;
     }
 }
 
-- (UIView*)traverseViewTreeForCommonSuperViewWithView:(UIView*)view {
+- (NSView*)traverseViewTreeForCommonSuperViewWithView:(NSView*)view {
     NSMutableOrderedSet* selfSuperviews = [NSMutableOrderedSet orderedSet];
-    UIView* selfSuperview = self;
+    NSView* selfSuperview = self;
     while (selfSuperview) {
         [selfSuperviews addObject:selfSuperview];
         selfSuperview = selfSuperview.superview;
     }
-    UIView* superview = view;
+    NSView* superview = view;
     while (superview) {
         if ([selfSuperviews containsObject:superview]) {
             return superview;
