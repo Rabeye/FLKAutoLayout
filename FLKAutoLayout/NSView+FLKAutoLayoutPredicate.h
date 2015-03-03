@@ -12,10 +12,10 @@ typedef struct {
     NSLayoutRelation relation;
     CGFloat multiplier;
     CGFloat constant;
-    UILayoutPriority priority;
+    NSLayoutPriority priority;
 } FLKAutoLayoutPredicate;
 
-extern FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGFloat multiplier, CGFloat constant, UILayoutPriority priority);
+extern FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGFloat multiplier, CGFloat constant, NSLayoutPriority priority);
 
 
 @interface NSView (FLKAutoLayoutPredicate)
