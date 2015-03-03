@@ -7,7 +7,7 @@
 
 #import "NSView+FLKAutoLayoutPredicate.h"
 
-FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGFloat multiplier, CGFloat constant, UILayoutPriority priority) {
+FLKAutoLayoutPredicate FLKAutoLayoutPredicateMake(NSLayoutRelation relation, CGFloat multiplier, CGFloat constant, NSLayoutPriority priority) {
     FLKAutoLayoutPredicate predicate;
     predicate.relation = relation;
     predicate.multiplier = multiplier;
