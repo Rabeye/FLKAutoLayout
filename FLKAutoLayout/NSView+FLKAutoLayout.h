@@ -41,6 +41,7 @@
 
 - (NSArray*)constrainTopSpaceToView:(NSView*)view predicate:(NSString*)predicate;
 - (NSArray*)constrainLeadingSpaceToView:(NSView*)view predicate:(NSString*)predicate;
+- (NSArray*)constrainTrailingSpaceToView:(NSView*)view predicate:(NSString*)predicate;
 
 
 
